@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 import Input from "../Input";
-import RTE from "../RTE.JSX";
+import RTE from "../RTE.jsx";
 import Select from "../Select";
 import appwriteService from "../../appwrite/config";
 import { useSelector } from "react-redux";
@@ -35,7 +35,17 @@ export default function PostForm({post}) {
                 navigate(`/post/${dbPost.$id}`)
             }
         } else {
+            const file = await appwriteService.uploadFile(data.image[0])
+            if (file) {
+                const fileId = file.$id
+                data.featuredImage = fileId
+                await appwriteService.createPost({...data, userId: userData.$id
+                })
 
+                if (dbPost) {
+                    navigate(`/post/${dbPost.$id}`)
+                }
+            }
         }
     }
 

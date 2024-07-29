@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container } from '../container/Container'
-import { Logo } from '../Logo'
+import Container from '../container/Container'
+import Logo from '../Logo'
 import { Link } from 'react-router-dom'
 import LogoutButton from './LogoutButton'
 import { useNavigate } from 'react-router-dom'
